@@ -23,6 +23,8 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+
+        <link rel="manifest" href="manifest.json" />
         <title>Civilization - A New Dawn - Automated Player</title>
       </Head>
 
