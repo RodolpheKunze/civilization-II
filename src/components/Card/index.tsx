@@ -34,33 +34,36 @@ const Card: React.FC<CardProps> = ({ type, moveCard, index }) => {
       </button>
       <nav>
         <ChangeCardButton
+          type="button"
           onClick={() => moveCard(index, index - 1)}
           disabled={index === 0}
           style={{
             opacity: index !== 0 ? 1 : 0,
           }}
         >
-          <BsFillCaretLeftFill />
+          <BsFillCaretLeftFill size={30} />
         </ChangeCardButton>
 
         <ChangeCardButton
+          type="button"
           onClick={() => {
             setCardLevel((oldState) => {
               return getNewLevel(oldState);
             });
           }}
         >
-          <GiCardExchange />
+          <GiCardExchange size={30} />
         </ChangeCardButton>
 
         <ChangeCardButton
+          type="button"
           onClick={() => moveCard(index, index + 1)}
           disabled={index === 4}
           style={{
             opacity: index !== 4 ? 1 : 0,
           }}
         >
-          <BsFillCaretRightFill />
+          <BsFillCaretRightFill size={30} />
         </ChangeCardButton>
       </nav>
 

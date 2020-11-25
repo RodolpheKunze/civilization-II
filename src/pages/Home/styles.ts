@@ -24,7 +24,7 @@ export const Grid = styled.section`
 
 export const Slot = styled.div`
   flex: 1;
-  padding: 0 15px;
+  padding: 0 5px;
 
   float: left;
   width: 20%;

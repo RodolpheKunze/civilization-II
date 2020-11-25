@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 type ImageProps = {
   src: string;
@@ -12,22 +12,14 @@ type ImageProps = {
 const ImageWebp: React.FC<ImageProps> = ({
   src,
   alt,
-  width,
-  height,
-  layout = 'responsive',
-  quality = '100',
+  // width,
+  // height,
+  // layout = 'responsive',
+  // quality = '100',
 }) => {
   return (
     <div className="image">
-      <Image
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        layout={layout}
-        quality={quality}
-        priority
-      />
+      <img src={src} alt={alt} />
     </div>
   );
 };
