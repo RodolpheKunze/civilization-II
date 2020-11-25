@@ -1,10 +1,9 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback } from 'react';
 import Modal from 'react-modal';
 
 import { GiCardExchange } from 'react-icons/gi';
 import { TiArrowBackOutline } from 'react-icons/ti';
-
-import { useDrag, useDrop } from 'react-dnd';
+import { BsFillCaretRightFill, BsFillCaretLeftFill } from 'react-icons/bs';
 
 import Image from 'components/Image';
 
@@ -17,17 +16,7 @@ export interface CardProps {
   moveCard: (dragIndex: number, hoverIndex: number) => void;
 }
 
-interface DragItem {
-  index: number;
-  id: string;
-  type: string;
-}
-
-const ItemTypes = {
-  CARD: 'card',
-};
-
-const Card: React.FC<CardProps> = ({ type, moveCard, index, id }) => {
+const Card: React.FC<CardProps> = ({ type, moveCard, index }) => {
   const [modal, setModal] = useState<boolean>(false);
 
   const [cardLevel, setCardLevel] = useState<number>(1);
@@ -38,54 +27,42 @@ const Card: React.FC<CardProps> = ({ type, moveCard, index, id }) => {
     return newLevel;
   }, []);
 
-  /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-  const ref = useRef<HTMLDivElement>(null);
-  const [, drop] = useDrop({
-    accept: ItemTypes.CARD,
-    hover(item: DragItem) {
-      if (!ref.current) {
-        return;
-      }
-      const dragIndex = item.index;
-      const hoverIndex = index;
-
-      // Don't replace items with themselves
-      if (dragIndex === hoverIndex) {
-        return;
-      }
-
-      moveCard(dragIndex, hoverIndex);
-
-      item.index = hoverIndex;
-    },
-  });
-
-  const [{ isDragging }, drag] = useDrag({
-    item: { type: ItemTypes.CARD, id, index },
-    collect: (monitor: any) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  });
-
-  const opacity = isDragging ? 0 : 1;
-  drag(drop(ref));
-
   return (
-    <Container ref={ref} style={{ opacity }}>
+    <Container>
       <button type="button" onClick={() => setModal(true)}>
         <Image src={`/cards/${type}-${cardLevel}.jpg`} width={538} height={837} alt="Card" />
       </button>
+      <nav>
+        <ChangeCardButton
+          onClick={() => moveCard(index, index - 1)}
+          disabled={index === 0}
+          style={{
+            opacity: index !== 0 ? 1 : 0,
+          }}
+        >
+          <BsFillCaretLeftFill />
+        </ChangeCardButton>
 
-      <ChangeCardButton
-        onClick={() => {
-          setCardLevel((oldState) => {
-            return getNewLevel(oldState);
-          });
-        }}
-      >
-        <GiCardExchange />
-      </ChangeCardButton>
+        <ChangeCardButton
+          onClick={() => {
+            setCardLevel((oldState) => {
+              return getNewLevel(oldState);
+            });
+          }}
+        >
+          <GiCardExchange />
+        </ChangeCardButton>
+
+        <ChangeCardButton
+          onClick={() => moveCard(index, index + 1)}
+          disabled={index === 4}
+          style={{
+            opacity: index !== 4 ? 1 : 0,
+          }}
+        >
+          <BsFillCaretRightFill />
+        </ChangeCardButton>
+      </nav>
 
       <Modal isOpen={modal} onRequestClose={() => setModal(false)}>
         <ModalContent>

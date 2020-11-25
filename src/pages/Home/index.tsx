@@ -1,7 +1,5 @@
 import React, { useState, useCallback } from 'react';
 
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
 
 import Card from 'components/Card';
@@ -34,13 +32,13 @@ const Home: React.FC = () => {
   ]);
 
   const moveCard = useCallback(
-    (dragIndex: number, hoverIndex: number) => {
-      const dragCard = cards[dragIndex];
+    (actualIndex: number, newIndex: number) => {
+      const dragCard = cards[actualIndex];
       setCards(
         update(cards, {
           $splice: [
-            [dragIndex, 1],
-            [hoverIndex, 0, dragCard],
+            [actualIndex, 1],
+            [newIndex, 0, dragCard],
           ],
         })
       );
@@ -50,14 +48,6 @@ const Home: React.FC = () => {
 
   return (
     <Container>
-      <header>
-        <p>
-          <strong>Instructions:</strong>
-        </p>
-        <p>- Click and drag cards to organize automated player actions</p>
-        <p>- Click on images to zoom</p>
-      </header>
-
       <Grid>
         <Slot>
           <SlotHeader background="tile-grassland.jpg">
@@ -86,17 +76,15 @@ const Home: React.FC = () => {
         </Slot>
       </Grid>
 
-      <DndProvider backend={HTML5Backend}>
-        <Grid>
-          {cards.map((card, index) => {
-            return (
-              <Slot key={card.type}>
-                <Card {...card} moveCard={moveCard} index={index} />
-              </Slot>
-            );
-          })}
-        </Grid>
-      </DndProvider>
+      <Grid>
+        {cards.map((card, index) => {
+          return (
+            <Slot key={card.type}>
+              <Card {...card} moveCard={moveCard} index={index} />
+            </Slot>
+          );
+        })}
+      </Grid>
 
       <a
         href="https://github.com/daniofilho/civilization-new-dawn-automated-player"

@@ -14,14 +14,10 @@ export default createGlobalStyle`
   body {
     font-family:   Arial, sans-serif;
     color: #333;
-    display: flex;
-    flex-flow: column;
-
+     
     margin: 0;
     padding: 0;
     border: 0;
-
-     
   }
   #__next {
     min-height: 100%;

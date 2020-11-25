@@ -13,19 +13,25 @@ export const Container = styled.section`
   .image {
     box-shadow: 0px 0px 5px 1px rgba(255, 255, 255, 0.5);
   }
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 10px;
+  }
 `;
 
 export const ChangeCardButton = styled.button`
   cursor: pointer;
-  margin: 15px auto;
   display: block;
   background: none;
   border-width: 0px;
 
   svg {
     color: #fff;
-    height: 50px;
-    width: 50px;
+    width: 20px;
+    height: 20px;
   }
 `;
 

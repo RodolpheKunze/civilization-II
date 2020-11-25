@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  min-height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
   & > header {
     color: #fff;
     margin: 20px auto 30px auto;
@@ -25,13 +19,16 @@ export const Container = styled.div`
 
 export const Grid = styled.section`
   padding: 20px;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 15px;
+  width: 100%;
 `;
 
-export const Slot = styled.div``;
+export const Slot = styled.div`
+  flex: 1;
+  padding: 0 15px;
+
+  float: left;
+  width: 20%;
+`;
 
 type SlotHeaderProps = {
   background: string;
@@ -43,7 +40,7 @@ export const SlotHeader = styled.div.attrs<SlotHeaderProps>(({ background }) => 
 }))<SlotHeaderProps>`
   background-size: cover;
 
-  padding: 30px 20px;
+  padding: 10px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
