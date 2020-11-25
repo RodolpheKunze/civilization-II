@@ -4,6 +4,6 @@
 
 Best played on a tablet or a bigger screen, not made for small screens.
 
-[Click here to use it](https://daniofilho.com.br/civilization-a-new-dawn-)
+[CLICK HERE TO PLAY](https://civilization-new-dawn-automated-player.vercel.app/)
 
-[Click here to see the solo rules - and the cards](https://www.fantasyflightgames.com/en/news/2020/9/10/automatic-civilization/)
+[solo rules and cards](https://www.fantasyflightgames.com/en/news/2020/9/10/automatic-civilization/)

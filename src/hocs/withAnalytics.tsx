@@ -5,7 +5,7 @@ function WithAnalytics<P>(WrappedComponent: React.ComponentType<P>): React.Compo
   const ComponentWithHoc = (props: P): ReactElement => {
     useEffect(() => {
       // Inicializa o Google Analytics
-      ReactGA.initialize('254091640');
+      ReactGA.initialize('G-C5BDMKCQ31');
 
       // Avisa o Google Anaylytics
       ReactGA.set({ page: window.location.pathname });
