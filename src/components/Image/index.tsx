@@ -19,7 +19,15 @@ const ImageWebp: React.FC<ImageProps> = ({
 }) => {
   return (
     <div className="image">
-      <Image src={src} alt={alt} width={width} height={height} layout={layout} quality={quality} />
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        layout={layout}
+        quality={quality}
+        priority
+      />
     </div>
   );
 };
