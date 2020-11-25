@@ -18,7 +18,6 @@ export const Container = styled.section`
 
     button {
       width: 30%;
-      background: red;
     }
   }
 `;
