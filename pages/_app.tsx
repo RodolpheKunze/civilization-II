@@ -27,17 +27,15 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         <link rel="manifest" href="manifest.json" />
         <title>Civilization - A New Dawn - Automated Player</title>
 
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5BDMKCQ31" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
-                <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5BDMKCQ31"></script>
-                <script>
                   window.dataLayer = window.dataLayer || [];
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
 
                   gtag('config', 'G-C5BDMKCQ31');
-                </script>
               `,
           }}
         />
