@@ -1,18 +1,15 @@
-/* eslint-disable no-use-before-define */
 /* eslint-disable react/no-danger */
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
+import GoogleFonts from 'next-google-fonts';
+import { ChakraProvider } from '@chakra-ui/react';
 
-import Modal from 'react-modal';
+import { I18NProvider } from 'i18n';
 
 import GlobalStyle from 'styles/global';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
-  useEffect(() => {
-    Modal.setAppElement('#__next');
-  }, []);
-
   return (
     <>
       <Head>
@@ -25,7 +22,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         <link rel="shortcut icon" type="image/png" href="/favicon.png" />
 
         <link rel="manifest" href="manifest.json" />
-        <title>Civilization - A New Dawn - Automated Player</title>
+        <title>Civilization - A New Dawn - Auxiliary Solo Mode</title>
 
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5BDMKCQ31" />
         <script
@@ -41,9 +38,14 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         />
       </Head>
 
-      <Component {...pageProps} />
+      <ChakraProvider>
+        <I18NProvider>
+          <Component {...pageProps} />
+        </I18NProvider>
+      </ChakraProvider>
 
       <GlobalStyle />
+      <GoogleFonts href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" />
     </>
   );
 };

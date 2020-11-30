@@ -1,13 +1,23 @@
 import React, { useState, useCallback } from 'react';
 
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton } from '@chakra-ui/react';
+
+import ReactCountryFlag from 'react-country-flag';
 import update from 'immutability-helper';
 
-import Card from 'components/Card';
-import Image from 'components/Image';
+import { useI18N } from 'i18n';
 
-import { Container, Grid, Slot, SlotHeader } from './styles';
+import Card from 'components/Card';
+
+import templateLiteralToHTML from 'utils/templateLiteralToHTML';
+
+import { Container, Grid, Slot, SlotHeader, ModalContainer } from './styles';
 
 const Home: React.FC = () => {
+  const { t, changeLocale } = useI18N();
+
+  const [modal, setModal] = useState<boolean>(true);
+
   const [cards, setCards] = useState([
     {
       id: 1,
@@ -48,6 +58,20 @@ const Home: React.FC = () => {
 
   return (
     <Container>
+      <header>
+        <ul>
+          <li>
+            <button type="button" onClick={() => changeLocale('en')}>
+              <ReactCountryFlag countryCode="US" svg />
+            </button>
+          </li>
+          <li>
+            <button type="button" onClick={() => changeLocale('pt_br')}>
+              <ReactCountryFlag countryCode="BR" svg />
+            </button>
+          </li>
+        </ul>
+      </header>
       <Grid>
         <Slot>
           <SlotHeader background="tile-grassland.jpg">
@@ -86,14 +110,64 @@ const Home: React.FC = () => {
         })}
       </Grid>
 
-      <a
-        href="https://github.com/daniofilho/civilization-new-dawn-automated-player"
-        target="_blank"
-        className="github"
-        rel="noopener noreferrer"
-      >
-        <Image src="/github.png" width={200} height={82} alt="Github" />
-      </a>
+      <Modal isOpen={modal} onClose={() => setModal(false)} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+
+          <ModalContainer>
+            <header>
+              <ul>
+                <li>
+                  <button type="button" onClick={() => changeLocale('en')}>
+                    <ReactCountryFlag countryCode="US" svg />
+                  </button>
+                </li>
+                <li>
+                  <button type="button" onClick={() => changeLocale('pt_br')}>
+                    <ReactCountryFlag countryCode="BR" svg />
+                  </button>
+                </li>
+              </ul>
+              <h1>{t.title}</h1>
+              <h2>{t.subTitle}</h2>
+            </header>
+            <section>
+              <p>{templateLiteralToHTML(t.description)}</p>
+            </section>
+            <footer>
+              <h4>{t.credits.label}</h4>
+              <p>
+                <strong>{t.credits.game.label}</strong>
+                {t.credits.game.name}
+              </p>
+              <p>
+                <strong>{t.credits.project.label}</strong>
+                {t.credits.project.name}
+                <br />
+                <a
+                  href="https://github.com/daniofilho/civilization-new-dawn-automated-player"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  https://github.com/daniofilho/civilization-new-dawn-automated-player
+                </a>
+              </p>
+              <p>
+                <strong>{t.credits.translation.label}</strong>
+              </p>
+              <p className="has-flag">
+                <ReactCountryFlag countryCode="US" />
+                <span>{t.credits.translation.en}</span>
+              </p>
+              <p className="has-flag">
+                <ReactCountryFlag countryCode="BR" />
+                <span>{t.credits.translation.ptbr}</span>
+              </p>
+            </footer>
+          </ModalContainer>
+        </ModalContent>
+      </Modal>
     </Container>
   );
 };

@@ -35,36 +35,11 @@ export const ChangeCardButton = styled.button`
   }
 `;
 
-export const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0px 0px 5px 1px rgba(255, 255, 255, 0.2);
-    border-width: 0px;
-    margin-bottom: 15px;
-
-    cursor: pointer;
-    border-radius: 50%;
-    margin-left: auto;
-    width: 45px;
-    height: 45px;
-
-    svg {
-      color: #fff;
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  img {
-    max-height: 80vh;
+export const ModalContainer = styled.div`
+  .chakra-modal__close-btn,
+  .chakra-modal__close-btn:hover {
+    background-color: #fff;
+    right: -20px;
+    top: -20px;
   }
 `;

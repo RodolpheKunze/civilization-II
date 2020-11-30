@@ -12,7 +12,7 @@ export default createGlobalStyle`
   #__next,
   html, 
   body {
-    font-family:   Arial, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     color: #333;
      
     margin: 0;
@@ -20,13 +20,19 @@ export default createGlobalStyle`
     border: 0;
   }
   #__next {
-    min-height: 100%;
+    min-width: 1000px;
+    width: 100%;
+    min-height: 590px;
+    height: 100%; 
   }
   
-  body {
+  body, #__next {
     background-image: url('/background.jpg');
     background-size: cover;
     background-attachment: fixed;
+
+    display: flex; 
+    flex: 1;
   }
   
 

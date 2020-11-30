@@ -1,13 +1,15 @@
 import React, { useState, useCallback } from 'react';
-import Modal from 'react-modal';
+
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton } from '@chakra-ui/react';
 
 import { GiCardExchange } from 'react-icons/gi';
-import { TiArrowBackOutline } from 'react-icons/ti';
 import { BsFillCaretRightFill, BsFillCaretLeftFill } from 'react-icons/bs';
+
+import { useI18N } from 'i18n';
 
 import Image from 'components/Image';
 
-import { Container, ModalContent, ChangeCardButton } from './styles';
+import { Container, ChangeCardButton, ModalContainer } from './styles';
 
 export interface CardProps {
   index: number;
@@ -17,6 +19,8 @@ export interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ type, moveCard, index }) => {
+  const { locale } = useI18N();
+
   const [modal, setModal] = useState<boolean>(false);
 
   const [cardLevel, setCardLevel] = useState<number>(1);
@@ -30,7 +34,12 @@ const Card: React.FC<CardProps> = ({ type, moveCard, index }) => {
   return (
     <Container>
       <button type="button" onClick={() => setModal(true)}>
-        <Image src={`/cards/${type}-${cardLevel}.jpg`} width={538} height={837} alt="Card" />
+        <Image
+          src={`/cards/${locale}/${type}-${cardLevel}.jpg`}
+          width={538}
+          height={837}
+          alt="Card"
+        />
       </button>
       <nav>
         <ChangeCardButton
@@ -67,12 +76,13 @@ const Card: React.FC<CardProps> = ({ type, moveCard, index }) => {
         </ChangeCardButton>
       </nav>
 
-      <Modal isOpen={modal} onRequestClose={() => setModal(false)}>
+      <Modal isOpen={modal} onClose={() => setModal(false)}>
+        <ModalOverlay />
         <ModalContent>
-          <button type="button" onClick={() => setModal(false)}>
-            <TiArrowBackOutline />
-          </button>
-          <img src={`/cards/${type}-${cardLevel}.jpg`} alt="Card" />
+          <ModalContainer>
+            <ModalCloseButton />
+            <img src={`/cards/${locale}/${type}-${cardLevel}.jpg`} alt="Card" />
+          </ModalContainer>
         </ModalContent>
       </Modal>
     </Container>
