@@ -4,6 +4,8 @@ import { Modal, ModalOverlay, ModalContent, ModalCloseButton } from '@chakra-ui/
 
 import { GiCardExchange } from 'react-icons/gi';
 import { BsArrowRight, BsArrowBarLeft } from 'react-icons/bs';
+import { MdAdd, MdRemove } from 'react-icons/md';
+import { SiCodesandbox } from 'react-icons/si';
 
 import { useI18N } from 'i18n';
 
@@ -21,6 +23,8 @@ export interface CardProps {
 
 const Card: React.FC<CardProps> = ({ type, moveCard, moveCardToStart, index }) => {
   const { locale } = useI18N();
+
+  const [tokens, setTokens] = useState(0);
 
   const [modal, setModal] = useState<boolean>(false);
 
@@ -42,6 +46,7 @@ const Card: React.FC<CardProps> = ({ type, moveCard, moveCardToStart, index }) =
           alt="Card"
         />
       </button>
+
       <nav>
         <ChangeCardButton
           type="button"
@@ -74,6 +79,30 @@ const Card: React.FC<CardProps> = ({ type, moveCard, moveCardToStart, index }) =
           }}
         >
           <BsArrowRight size={30} />
+        </ChangeCardButton>
+      </nav>
+
+      <nav>
+        <ChangeCardButton
+          type="button"
+          onClick={() => {
+            const newTokens = tokens - 1;
+            setTokens(newTokens > 0 ? newTokens : 0);
+          }}
+        >
+          <MdRemove />
+        </ChangeCardButton>
+        <h5>
+          <SiCodesandbox />
+          <span>{tokens}</span>
+        </h5>
+        <ChangeCardButton
+          type="button"
+          onClick={() => {
+            setTokens(tokens + 1);
+          }}
+        >
+          <MdAdd />
         </ChangeCardButton>
       </nav>
 

@@ -14,10 +14,41 @@ export const Container = styled.section`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 10px 10px;
+    padding: 10px 20px;
 
     button {
       width: 30%;
+      background: #557dc1;
+      margin: 2px;
+      color: #fff;
+
+      border-radius: 5px;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      height: 50px;
+      width: 50px;
+
+      svg {
+        color: #fff;
+      }
+    }
+
+    h5 {
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-size: 26px;
+
+      svg {
+        color: #fff;
+        margin-right: 10px;
+      }
     }
   }
 `;
