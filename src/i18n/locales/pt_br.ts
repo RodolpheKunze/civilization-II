@@ -6,19 +6,9 @@ const ptbr: I18NStrings = {
 - Clique na carta para visualiza-la em tamanho maior.`,
   credits: {
     label: 'Créditos',
-    game: {
-      label: 'O Jogo:',
-      name: 'Fantasy Flight',
-    },
-    project: {
-      label: 'Projeto / Programação:',
-      name: 'Dânio Filho',
-    },
-    translation: {
-      label: 'Traduções:',
-      en: 'Fantasy Flight',
-      ptbr: 'Yuri Melo',
-    },
+    game: 'O Jogo:',
+    project: 'Projeto / Programação:',
+    translation: 'Traduções:',
   },
 };
 

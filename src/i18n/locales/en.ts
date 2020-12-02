@@ -6,19 +6,9 @@ const en: I18NStrings = {
 - Click on the card to expand the image.`,
   credits: {
     label: 'Credits',
-    game: {
-      label: 'The game:',
-      name: 'Fantasy Flight',
-    },
-    project: {
-      label: 'Project / Programming',
-      name: 'Dânio Filho',
-    },
-    translation: {
-      label: 'Translations:',
-      en: 'Fantasy Flight',
-      ptbr: 'Yuri Melo',
-    },
+    game: 'The game:',
+    project: 'Project / Programming',
+    translation: 'Translations:',
   },
 };
 

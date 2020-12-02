@@ -3,7 +3,7 @@ import React, { useState, useCallback } from 'react';
 import { Modal, ModalOverlay, ModalContent, ModalCloseButton } from '@chakra-ui/react';
 
 import { GiCardExchange } from 'react-icons/gi';
-import { BsFillCaretRightFill, BsFillCaretLeftFill } from 'react-icons/bs';
+import { BsArrowRight, BsArrowBarLeft } from 'react-icons/bs';
 
 import { useI18N } from 'i18n';
 
@@ -15,10 +15,11 @@ export interface CardProps {
   index: number;
   id: number;
   type: string;
-  moveCard: (dragIndex: number, hoverIndex: number) => void;
+  moveCard: (actualIndex: number, newIndex: number) => void;
+  moveCardToStart: (cardIndex: number) => void;
 }
 
-const Card: React.FC<CardProps> = ({ type, moveCard, index }) => {
+const Card: React.FC<CardProps> = ({ type, moveCard, moveCardToStart, index }) => {
   const { locale } = useI18N();
 
   const [modal, setModal] = useState<boolean>(false);
@@ -44,13 +45,13 @@ const Card: React.FC<CardProps> = ({ type, moveCard, index }) => {
       <nav>
         <ChangeCardButton
           type="button"
-          onClick={() => moveCard(index, index - 1)}
+          onClick={() => moveCardToStart(index)}
           disabled={index === 0}
           style={{
             opacity: index !== 0 ? 1 : 0,
           }}
         >
-          <BsFillCaretLeftFill size={30} />
+          <BsArrowBarLeft size={30} />
         </ChangeCardButton>
 
         <ChangeCardButton
@@ -72,7 +73,7 @@ const Card: React.FC<CardProps> = ({ type, moveCard, index }) => {
             opacity: index !== 4 ? 1 : 0,
           }}
         >
-          <BsFillCaretRightFill size={30} />
+          <BsArrowRight size={30} />
         </ChangeCardButton>
       </nav>
 

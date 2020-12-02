@@ -41,6 +41,7 @@ const Home: React.FC = () => {
     },
   ]);
 
+  // Change cards position based on index
   const moveCard = useCallback(
     (actualIndex: number, newIndex: number) => {
       const dragCard = cards[actualIndex];
@@ -56,6 +57,19 @@ const Home: React.FC = () => {
     [cards]
   );
 
+  // Send card to start of array
+  const moveCardToStart = useCallback((cardIndex: number) => {
+    setCards((oldState) => {
+      return [
+        oldState[cardIndex],
+        ...oldState.filter((e, i) => {
+          if (cardIndex !== i) return e;
+          return null;
+        }),
+      ];
+    });
+  }, []);
+
   return (
     <Container>
       <header>
@@ -68,6 +82,11 @@ const Home: React.FC = () => {
           <li>
             <button type="button" onClick={() => changeLocale('pt_br')}>
               <ReactCountryFlag countryCode="BR" svg />
+            </button>
+          </li>
+          <li>
+            <button type="button" onClick={() => changeLocale('es')}>
+              <ReactCountryFlag countryCode="ES" svg />
             </button>
           </li>
         </ul>
@@ -104,7 +123,7 @@ const Home: React.FC = () => {
         {cards.map((card, index) => {
           return (
             <Slot key={card.type}>
-              <Card {...card} moveCard={moveCard} index={index} />
+              <Card {...card} moveCard={moveCard} moveCardToStart={moveCardToStart} index={index} />
             </Slot>
           );
         })}
@@ -128,6 +147,11 @@ const Home: React.FC = () => {
                     <ReactCountryFlag countryCode="BR" svg />
                   </button>
                 </li>
+                <li>
+                  <button type="button" onClick={() => changeLocale('es')}>
+                    <ReactCountryFlag countryCode="ES" svg />
+                  </button>
+                </li>
               </ul>
               <h1>{t.title}</h1>
               <h2>{t.subTitle}</h2>
@@ -138,12 +162,12 @@ const Home: React.FC = () => {
             <footer>
               <h4>{t.credits.label}</h4>
               <p>
-                <strong>{t.credits.game.label}</strong>
-                {t.credits.game.name}
+                <strong>{t.credits.game}</strong>
+                Fantasy Flight
               </p>
               <p>
-                <strong>{t.credits.project.label}</strong>
-                {t.credits.project.name}
+                <strong>{t.credits.project}</strong>
+                Dânio Filho
                 <br />
                 <a
                   href="https://github.com/daniofilho/civilization-new-dawn-automated-player"
@@ -154,15 +178,19 @@ const Home: React.FC = () => {
                 </a>
               </p>
               <p>
-                <strong>{t.credits.translation.label}</strong>
+                <strong>{t.credits.translation}</strong>
               </p>
               <p className="has-flag">
                 <ReactCountryFlag countryCode="US" />
-                <span>{t.credits.translation.en}</span>
+                <span>Fantasy Flight</span>
               </p>
               <p className="has-flag">
                 <ReactCountryFlag countryCode="BR" />
-                <span>{t.credits.translation.ptbr}</span>
+                <span>Yuri Melo</span>
+              </p>
+              <p className="has-flag">
+                <ReactCountryFlag countryCode="ES" />
+                <span>Daniel Bescós</span>
               </p>
             </footer>
           </ModalContainer>
