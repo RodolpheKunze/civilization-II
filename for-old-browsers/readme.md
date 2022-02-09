@@ -1,5 +1,3 @@
-# Unimed - Projeto esportivo
-
 # Como rodar o projeto?
 
 `npm run grunt serve`
