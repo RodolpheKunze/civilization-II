@@ -1,8 +1,8 @@
 /* eslint-disable react/no-danger */
-import React from 'react';
+//import React from 'react';
 import Head from 'next/head';
+import React from "react";
 import type { AppProps } from 'next/app';
-import GoogleFonts from 'next-google-fonts';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import { I18NProvider } from 'i18n';
@@ -23,29 +23,13 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
         <link rel="manifest" href="manifest.json" />
         <title>Civilization - A New Dawn - Auxiliary Solo Mode</title>
-
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5BDMKCQ31" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-
-                  gtag('config', 'G-C5BDMKCQ31');
-              `,
-          }}
-        />
       </Head>
-
       <ChakraProvider>
         <I18NProvider>
           <Component {...pageProps} />
         </I18NProvider>
       </ChakraProvider>
-
       <GlobalStyle />
-      <GoogleFonts href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" />
     </>
   );
 };
