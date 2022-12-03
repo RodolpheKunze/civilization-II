@@ -180,11 +180,11 @@ const Home: React.FC = () => {
                 Dânio Filho
                 <br />
                 <a
-                  href="https://github.com/daniofilho/civilization-new-dawn-automated-player"
+                  href="https://github.com/RodolpheKunze/civilization-II.git"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  https://github.com/daniofilho/civilization-new-dawn-automated-player
+                  https://github.com/RodolpheKunze/civilization-II.git
                 </a>
               </p>
               <p>
